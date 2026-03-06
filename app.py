@@ -2,13 +2,13 @@ import streamlit as st
 import plotly.graph_objects as go
 
 st.set_page_config(
-    page_title="Animal Capital — Window Pane Manufacturing",
-    page_icon="🏭",
+    page_title="Animal Capital Project",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
-# --- COLORS matching Piccoli Mondi aesthetic ---
+# --- COLORS matching aesthetic ---
 BG = "#FAF5EF"
 CARD = "#FFFFFF"
 TEXT = "#1A1A1A"
