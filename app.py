@@ -281,7 +281,7 @@ fig.add_trace(go.Bar(x=["Saint-Gobain","AGC Inc.","Guardian<br>(Koch)","Şişeca
     y=[12,6,5,3,revenue/1e9],marker=dict(color=[PK,BL,OR,GR,RD]),
     text=["$12B","$6B","$5B","$3B",fmt(revenue)],textposition='outside',
     textfont=dict(family="JetBrains Mono",size=12,color=TX)))
-fig.update_layout(**PL,height=300,yaxis=dict(showgrid=True,gridcolor=BD,title="Glass Revenue ($B)",tickfont=dict(color=TX),titlefont=dict(color=TX)),
+fig.update_layout(**PL,height=300,yaxis=dict(showgrid=True,gridcolor=BD,title=dict(text="Glass Revenue ($B)",font=dict(color=TX)),tickfont=dict(color=TX)),
     xaxis=dict(showgrid=False,tickfont=dict(color=TX)),bargap=0.4)
 st.plotly_chart(fig,use_container_width=True)
 
@@ -342,8 +342,8 @@ fig.add_hline(y=cost_per_t, line_dash="dot", line_color=RD, line_width=2,
     annotation_text=f"Total Cost: ${cost_per_t:.0f}/t", annotation_position="bottom right",
     annotation_font=dict(family="JetBrains Mono",size=12,color=RD))
 fig.update_layout(**PL, height=350, barmode='stack',
-    yaxis=dict(showgrid=True, gridcolor=BD, tickformat="$,.0f", title="$/tonne"),
-    xaxis=dict(showgrid=False), showlegend=False)
+    yaxis=dict(showgrid=True, gridcolor=BD, tickformat="$,.0f", title=dict(text="$/tonne", font=dict(color=TX)), tickfont=dict(color=TX)),
+    xaxis=dict(showgrid=False, tickfont=dict(color=TX)), showlegend=False)
 st.plotly_chart(fig, use_container_width=True)
 
 margin_text = f"Gross margin: {pct(gp_margin)} (${asp - cost_per_t:.0f}/t spread)"
@@ -373,7 +373,7 @@ wf_text=[fmt(revenue),fmt(-(soda_cost_t+other_raw)*tonnes),fmt(-energy_cost_t*to
 fig=go.Figure(go.Waterfall(x=wf_labels,y=wf_values,measure=wf_measures,text=wf_text,textposition="outside",
     textfont=dict(family="JetBrains Mono",size=10),connector=dict(line=dict(color=BD,width=1)),
     increasing=dict(marker=dict(color=GR)),decreasing=dict(marker=dict(color=RD)),totals=dict(marker=dict(color=BL))))
-fig.update_layout(**PL,height=400,yaxis=dict(showgrid=True,gridcolor=BD,tickformat="$,.0f"),xaxis=dict(showgrid=False,tickangle=-40))
+fig.update_layout(**PL,height=400,yaxis=dict(showgrid=True,gridcolor=BD,tickformat="$,.0f",tickfont=dict(color=TX)),xaxis=dict(showgrid=False,tickangle=-40,tickfont=dict(color=TX)))
 st.plotly_chart(fig,use_container_width=True)
 
 # 5-Year Ramp
@@ -386,8 +386,8 @@ fig.add_trace(go.Bar(x=[f"Year {i+1}" for i in range(5)],y=[revenue*r for r in r
 fig.add_trace(go.Bar(x=[f"Year {i+1}" for i in range(5)],y=[ebitda*r for r in ramp],
     name="EBITDA",marker=dict(color=GR),text=[fmt(ebitda*r) for r in ramp],textposition='outside',
     textfont=dict(family="JetBrains Mono",size=11,color=GR)))
-fig.update_layout(**PL,height=340,yaxis=dict(showgrid=True,gridcolor=BD,tickformat="$,.0f"),
-    xaxis=dict(showgrid=False),barmode='group',bargap=0.3,bargroupgap=0.1,
+fig.update_layout(**PL,height=340,yaxis=dict(showgrid=True,gridcolor=BD,tickformat="$,.0f",tickfont=dict(color=TX)),
+    xaxis=dict(showgrid=False,tickfont=dict(color=TX)),barmode='group',bargap=0.3,bargroupgap=0.1,
     legend=dict(orientation="h",yanchor="bottom",y=1.02,xanchor="right",x=1,font=dict(size=12,color=TX)))
 st.plotly_chart(fig,use_container_width=True)
 
