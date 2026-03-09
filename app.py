@@ -15,7 +15,17 @@ html,body,[class*="css"]{{font-family:'Inter',sans-serif;color:{TX};}}
 h1{{color:{TX}!important;font-weight:900!important;letter-spacing:-0.03em;}}
 h2{{color:{TX}!important;font-weight:800!important;letter-spacing:-0.02em;font-size:28px!important;}}
 h3{{color:{TX}!important;font-weight:700!important;font-size:18px!important;}}
+h4{{color:{TX}!important;font-weight:700!important;}}
 section[data-testid="stSidebar"]{{background:{CARD};border-right:1px solid {BD};}}
+section[data-testid="stSidebar"] *{{color:{TX}!important;}}
+section[data-testid="stSidebar"] label{{color:{TX}!important;}}
+section[data-testid="stSidebar"] .stMarkdown{{color:{TX}!important;}}
+section[data-testid="stSidebar"] .stExpander{{background:{CARD}!important;border:none!important;}}
+section[data-testid="stSidebar"] [data-testid="stExpander"]{{background:{CARD}!important;border:none!important;}}
+section[data-testid="stSidebar"] [data-testid="stExpanderDetails"]{{background:{CARD}!important;}}
+section[data-testid="stSidebar"] details{{background:{CARD}!important;border:none!important;}}
+section[data-testid="stSidebar"] details[open]{{background:{CARD}!important;}}
+section[data-testid="stSidebar"] details summary{{background:{CARD}!important;}}
 div[data-testid="stMetricValue"],div[data-testid="stMetricLabel"],div[data-testid="stMetricDelta"]{{display:none;}}
 .prose{{font-size:15.5px;line-height:1.85;color:{TX2};margin-bottom:16px;}}
 .prose b{{color:{TX};font-weight:700;}}
