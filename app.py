@@ -1,7 +1,10 @@
+
+Copy
+
 import streamlit as st
 import plotly.graph_objects as go
 
-st.set_page_config(page_title="Animal Capital — Window Pane Manufacturing", page_icon="🏭", layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(page_title="Animal Capital | Window Pane Manufacturing", page_icon="🏭", layout="wide", initial_sidebar_state="expanded")
 
 # --- PALETTE ---
 BG="#FAF5EF"; CARD="#FFFFFF"; TX="#1A1A1A"; TX2="#555555"; DIM="#999999"
@@ -123,7 +126,7 @@ PL = dict(plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)', font=dict
 # --- SIDEBAR ---
 with st.sidebar:
     st.markdown("### ▸ Financial Model")
-    st.markdown(f'<div class="prose" style="font-size:13px;">Adjust assumptions — all outputs update live.</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="prose" style="font-size:13px;">Adjust assumptions. All outputs update live.</div>', unsafe_allow_html=True)
     st.markdown("---")
     capex = st.slider("Total Capex ($M)", 40, 120, 75, 5, format="$%dM") * 1e6
     energy_pct = st.slider("Energy (% of COGS)", 10, 35, 22, 1, format="%d%%") / 100
@@ -146,10 +149,10 @@ roic=(ebit*0.75)/capex if capex>0 and ebit>0 else 0
 # ============ HERO ============
 st.markdown(f"""<div class="hero">
 <span class="hero-badge hero-dark">Animal Capital</span>
-<span class="hero-badge hero-or">Track 2 — Incubation Assessment</span>
+<span class="hero-badge hero-or">Track 2 / Incubation Assessment</span>
 <h1>Window Pane <span style="color:{PK};">Manufacturing</span></h1>
-<p class="hero-sub">A comprehensive evaluation of a greenfield float glass facility in the US Southeast — analyzing market dynamics, cost structure, competitive positioning, and investment returns.</p>
-<div class="hero-verdict">Verdict: <span>PE / Infrastructure play</span> — not a venture bet</div>
+<p class="hero-sub">Evaluating the case for a greenfield float glass facility in the US Southeast. Market dynamics, cost structure, competitive positioning, and investment returns.</p>
+<div class="hero-verdict">Verdict: <span>PE / Infrastructure play,</span> not a venture bet</div>
 <p style="font-family:'JetBrains Mono';font-size:12px;color:{DIM};margin-top:20px;">
 Vincenzo Salerno &bull; MSc Quantitative Finance, Bocconi University &bull; March 2026</p>
 </div>""", unsafe_allow_html=True)
@@ -159,6 +162,9 @@ st.markdown(f"""<div class="cnav">
 <a href="#executive-summary">Summary</a><a href="#market-analysis">Market</a><a href="#supply-chain">Supply Chain</a>
 <a href="#competition">Competition</a><a href="#financial-model">Model</a><a href="#location">Location</a><a href="#verdict">Verdict</a>
 </div>""", unsafe_allow_html=True)
+
+# --- INTERACTIVE NOTE ---
+st.markdown(f'<p style="text-align:center;font-size:13px;color:{DIM};margin-bottom:28px;font-style:italic;">This memo includes an interactive financial model. Use the sidebar controls on the left to adjust assumptions and see outputs update in real time.</p>', unsafe_allow_html=True)
 
 # --- ASSUMPTION CARDS ---
 st.markdown(f"""<div class="a-grid">
@@ -179,9 +185,9 @@ with c3: metric("Capex Required",fmt(capex),"250 TPD greenfield","orange")
 pb_tone = "green" if payback<4.5 else ("orange" if payback<6 else "red")
 with c4: metric("Payback",f"{payback:.1f}y","✓ Strong" if payback<4.5 else ("△ Moderate" if payback<6 else "✗ Long"),pb_tone)
 
-prose(f"""The global flat glass market is estimated at <b>$156–180 billion in 2025</b> (Global Market Insights: $156.2B; MarketsandMarkets: $179.8B), growing at 4.2–8.0% CAGR through 2030. The <b>US market alone is worth $12.3 billion</b>, expanding at 5.1% CAGR to $15.7B by 2030, with building &amp; construction accounting for <b>78.6% of demand</b>. Solar glass is the fastest US segment at <b>7.35% CAGR</b>, driven by Inflation Reduction Act incentives.""")
+prose(f"""The global flat glass market is estimated at <b>$156 to $180 billion in 2025</b> (Global Market Insights: $156.2B; MarketsandMarkets: $179.8B), growing at 4.2 to 8.0% CAGR through 2030. The US market alone is worth $12.3 billion, expanding at 5.1% CAGR to $15.7B by 2030, with building and construction accounting for 78.6% of demand. Solar glass is the fastest US segment at 7.35% CAGR, driven by Inflation Reduction Act incentives.""")
 
-prose(f"""The cautionary tale of <b>View Inc. and Halio</b> — two smart glass ventures that <b>burned $3B and went bankrupt</b> capturing less than 0.05% of the architectural glass market — empirically demonstrates why this sector punishes VC-style capital deployment.""")
+prose(f"""View Inc. and Halio, two smart glass ventures, <b>burned $3B and went bankrupt</b> while capturing less than 0.05% of the architectural glass market. This empirically demonstrates why the sector punishes VC-style capital deployment.""")
 
 
 # ============ 02 MARKET ============
@@ -193,7 +199,7 @@ with col1:
     st.markdown("#### US Market by End Use (2024)")
     fig = go.Figure()
     fig.add_trace(go.Bar(x=[78.6,12,5,4.4], y=["Building &<br>Construction","Automotive","Solar Glass","Electronics<br>& Other"],
-        orientation='h', marker=dict(color=[PK,PK,GR,OR], cornerradius=4),
+        orientation='h', marker=dict(color=[PK,PK,GR,OR]),
         text=["78.6%","12%","5%","4.4%"], textposition='auto', textfont=dict(family="JetBrains Mono",size=13,color="white")))
     fig.update_layout(**PL, height=220, xaxis=dict(showgrid=False,showticklabels=False,range=[0,100]),
         yaxis=dict(showgrid=False,autorange="reversed"), bargap=0.35)
@@ -208,7 +214,7 @@ with col2:
 <div><b style="color:{GR};">⬤ US Tariff Regime</b><br><span style="color:{TX2};font-size:13px;">Reshaping supply chains toward domestic production.</span></div>
 </div>""", unsafe_allow_html=True)
 
-prose("""The <b>energy-efficient glass</b> sub-market is valued at <b>$47.6B in 2025</b> (5.7% CAGR → $78.2B by 2034). <b>Low-E glass</b> — a $43.8B market projected to reach $65.8B by 2031 — is the growth story, with <b>45% of new construction</b> now specifying it. Incumbents with proprietary magnetron sputtering lines capture disproportionate value; commodity float producers compete on price alone.""")
+prose("""The energy-efficient glass sub-market is valued at <b>$47.6B in 2025</b> (5.7% CAGR, reaching $78.2B by 2034). Low-E glass, a $43.8B market projected to reach $65.8B by 2031, is the growth story: 45% of new construction now specifies it. Incumbents with proprietary magnetron sputtering lines capture disproportionate value, while commodity float producers compete on price alone.""")
 
 
 # ============ 03 SUPPLY CHAIN ============
@@ -220,7 +226,7 @@ with col1:
     st.markdown("#### Batch Cost Breakdown")
     fig = go.Figure()
     fig.add_trace(go.Bar(x=[60,20,15,5], y=["Soda Ash<br>(60% batch)","Silica Sand","Energy<br>(nat. gas)","Other"],
-        orientation='h', marker=dict(color=[RD,OR,OR,BL], cornerradius=4),
+        orientation='h', marker=dict(color=[RD,OR,OR,BL]),
         text=["60%","20%","15%","5%"], textposition='auto', textfont=dict(family="JetBrains Mono",size=13,color="white")))
     fig.update_layout(**PL, height=200, xaxis=dict(showgrid=False,showticklabels=False,range=[0,75]),
         yaxis=dict(showgrid=False,autorange="reversed"), bargap=0.35)
@@ -240,41 +246,33 @@ with col2:
 
 st.markdown(f"""<div class="callout callout-red">
 <div class="c-title">⚠ Critical Risk: Soda Ash Volatility</div>
-<div class="c-body">Soda ash constitutes <b>60% of batch costs</b>. In Q1 2025, spot prices spiked 18% month-on-month, triggering output cuts at two Midwestern plants. US prices rose from <b>$180/MT to $280/MT</b> in 9 months. Glass manufacturing consumes <b>51%+ of global soda ash</b>. Without long-term supply contracts, expect margin compression of 3–5pp during spikes.</div>
+<div class="c-body">Soda ash constitutes <b>60% of batch costs</b>. In Q1 2025, spot prices spiked 18% month-on-month, triggering output cuts at two Midwestern plants. US prices rose from $180/MT to $280/MT in just 9 months. Glass manufacturing consumes over 51% of global soda ash. Without long-term supply contracts, expect margin compression of 3 to 5 percentage points during price spikes.</div>
 </div>""", unsafe_allow_html=True)
 
-prose("""Float glass requires approximately <b>9 GJ/tonne</b> with furnaces at 1,500°C+ continuously. Producing 1 MT of soda ash alone needs <b>~10,000 kWh</b>. Result: <b>60–75% of variable costs are commodity-linked</b> — a structural disadvantage for undercapitalized entrants.""")
+prose("""Float glass requires approximately 9 GJ per tonne with furnaces running continuously above 1,500°C. Producing 1 MT of soda ash alone needs roughly 10,000 kWh. The result: <b>60 to 75% of variable costs are commodity-linked</b>, creating a structural disadvantage for undercapitalized entrants.""")
 
 
 # ============ 04 COMPETITION ============
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
 sec("04","Competitive Landscape","Five Incumbents, Accelerating Investment","competition")
 
-# Competitive matrix
-st.markdown("#### Competitive Positioning Matrix")
+# Competitive scale comparison
+st.markdown("#### Scale Comparison: Revenue by Incumbent")
 fig = go.Figure()
-comps_data = [
-    ("Saint-Gobain", 12, 11.7, 50, PK),
-    ("AGC Inc.", 6, 10, 40, BL),
-    ("Guardian (Koch)", 5, 9, 35, OR),
-    ("Şişecam", 3, 8, 45, GR),
-    ("New Entrant (proposed)", 0.066, 5, 20, RD),
-]
-for name, rev_b, margin, size, color in comps_data:
-    fig.add_trace(go.Scatter(
-        x=[rev_b], y=[margin], mode='markers+text', name=name,
-        text=[name], textposition='top center',
-        textfont=dict(family="Inter", size=11, color=TX),
-        marker=dict(size=size, color=color, opacity=0.7, line=dict(width=2, color="white"))))
-fig.update_layout(**PL, height=340, showlegend=False,
-    xaxis=dict(title="Revenue ($B)", showgrid=True, gridcolor=BD, type="log", range=[-1.5, 1.3]),
-    yaxis=dict(title="Operating Margin (%)", showgrid=True, gridcolor=BD, range=[3,14]))
+comp_names = ["Saint-Gobain","AGC Inc.","Guardian<br>(Koch)","Şişecam","New Entrant<br>(proposed)"]
+comp_revs = [12, 6, 5, 3, 0.066]
+comp_colors = [PK, BL, OR, GR, RD]
+fig.add_trace(go.Bar(x=comp_names, y=comp_revs, marker=dict(color=comp_colors),
+    text=["$12B","$6B","$5B","$3B","$66M"], textposition='outside',
+    textfont=dict(family="JetBrains Mono", size=12, color=TX)))
+fig.update_layout(**PL, height=300, yaxis=dict(showgrid=True, gridcolor=BD, tickformat="$,.0fB", title="Glass Revenue ($B)"),
+    xaxis=dict(showgrid=False), bargap=0.4)
 st.plotly_chart(fig, use_container_width=True)
-st.markdown(f'<p style="text-align:center;font-size:12px;color:{DIM};margin-top:-10px;">Bubble size represents estimated market power. New entrant shown in <span style="color:{RD};">red</span> for comparison.</p>', unsafe_allow_html=True)
+st.markdown(f'<p style="text-align:center;font-size:12px;color:{DIM};margin-top:-10px;">Proposed new entrant revenue at steady state versus incumbent glass divisions. Scale difference is roughly 50 to 180x.</p>', unsafe_allow_html=True)
 
 # Comp cards
 comps = [
-    ("Saint-Gobain","France","~€12B glass","Record 11.7% op. margin (H1 2024). Volta low-CO₂ furnace with AGC. $970M India expansion (2022–25)."),
+    ("Saint-Gobain","France","~€12B glass","Record 11.7% op. margin (H1 2024). Volta low-CO₂ furnace with AGC. $970M India expansion (2022 to 2025)."),
     ("AGC Inc.","Japan","~$6B glass","Volta hybrid furnace. Leading magnetron sputtering IP. Largest flat glass plant in Italy (Cuneo, 600 TPD)."),
     ("Şişecam","Turkey","~$3B","$470M in 2 new float lines. $114M in 3 coating lines across Turkey, Italy, Bulgaria. Coated capacity: 22M → 42M m²."),
     ("Guardian (Koch)","USA","~$5B","Dominant US market position. Koch Industries vertical integration. Deep construction supply chain distribution."),
@@ -293,10 +291,10 @@ for i,(name,hq,rev_s,edge) in enumerate(comps):
 
 st.markdown(f"""<div class="callout callout-red">
 <div class="c-title">📉 The Smart Glass Graveyard</div>
-<div class="c-body">View Inc. and Halio Inc. — two VC-backed smart glass companies — went bankrupt with a combined <b>$3B loss</b>, capturing <b>less than 0.05%</b> of the architectural glass market. Scale, distribution, and coating IP are the moats — not technology alone.</div>
+<div class="c-body">View Inc. and Halio Inc., two VC-backed smart glass companies, went bankrupt with a combined <b>$3B loss</b> while capturing less than 0.05% of the architectural glass market. Scale, distribution, and coating IP are the real moats in this industry, not technology alone.</div>
 </div>""", unsafe_allow_html=True)
 
-prose("""<b>NSG/Pilkington</b> shuttered Gladbeck (Jan 2025) while converting Rossford, Ohio to TCO solar glass (Mar 2025). Incumbents pivot to <b>high-margin specialty glass</b>, not commodity float. <b>Şişecam's $114M coating investment</b> — nearly doubling coated capacity — shows the value chain migrating from raw float to processed glass.""")
+prose("""NSG/Pilkington shuttered its Gladbeck plant in January 2025 while converting Rossford, Ohio to TCO solar glass production in March 2025. Incumbents are pivoting to high-margin specialty glass, not adding commodity float capacity. Şişecam's $114M coating investment, which nearly doubles their coated capacity, illustrates how the value chain is migrating from raw float production to processed glass.""")
 
 
 # ============ 05 MODEL ============
@@ -306,7 +304,7 @@ sec("05","Interactive Financial Model","Stress-Test the Unit Economics","financi
 prose("Use the <b>sidebar sliders</b> to adjust assumptions. All outputs update in real-time. Try setting soda ash to $180 (Q1 2025) vs $280 (Q3 2025) to see the margin impact.")
 
 # Bloomberg-style metrics
-st.markdown("#### Key Outputs — Steady State")
+st.markdown("#### Key Outputs at Steady State")
 c1,c2,c3,c4 = st.columns(4)
 ebitda_tone = "green" if ebitda_m>0.15 else ("orange" if ebitda_m>0.08 else "red")
 ni_tone = "green" if ni>0 else "red"
@@ -317,7 +315,7 @@ with c3: metric("Net Income",fmt(ni),f"Margin: {pct(ni_m)}",ni_tone)
 with c4: metric("ROIC",pct(roic),f"Payback: {payback:.1f}y",roic_tone)
 
 # Waterfall P&L
-st.markdown("#### P&L Waterfall — Revenue to Net Income")
+st.markdown("#### P&L Waterfall: Revenue to Net Income")
 wf_labels = ["Revenue","Raw Mat.","Energy","Labor","Gross Profit","SG&A","EBITDA","D&A","EBIT","Tax","Net Income"]
 wf_values = [rev, -raw_total, -energy, -labor, 0, -sga, 0, -da, 0, -tax, 0]
 wf_measures = ["absolute","relative","relative","relative","total","relative","total","relative","total","relative","total"]
@@ -326,9 +324,9 @@ fig = go.Figure(go.Waterfall(
     x=wf_labels, y=wf_values, measure=wf_measures, text=wf_text, textposition="outside",
     textfont=dict(family="JetBrains Mono", size=11),
     connector=dict(line=dict(color=BD, width=1)),
-    increasing=dict(marker=dict(color=GR, cornerradius=4)),
-    decreasing=dict(marker=dict(color=RD, cornerradius=4)),
-    totals=dict(marker=dict(color=BL, cornerradius=4))))
+    increasing=dict(marker=dict(color=GR)),
+    decreasing=dict(marker=dict(color=RD)),
+    totals=dict(marker=dict(color=BL))))
 fig.update_layout(**PL, height=380, yaxis=dict(showgrid=True, gridcolor=BD, tickformat="$,.0f"),
     xaxis=dict(showgrid=False, tickangle=-35))
 st.plotly_chart(fig, use_container_width=True)
@@ -338,10 +336,10 @@ st.markdown("#### 5-Year Revenue & EBITDA Ramp")
 ramp = [0.55,0.75,0.90,1.0,1.0]
 fig = go.Figure()
 fig.add_trace(go.Bar(x=[f"Year {i+1}" for i in range(5)], y=[rev*r for r in ramp],
-    name="Revenue", marker=dict(color=PK, cornerradius=4),
+    name="Revenue", marker=dict(color=PK),
     text=[fmt(rev*r) for r in ramp], textposition='outside', textfont=dict(family="JetBrains Mono",size=11,color=PK)))
 fig.add_trace(go.Bar(x=[f"Year {i+1}" for i in range(5)], y=[ebitda*r for r in ramp],
-    name="EBITDA", marker=dict(color=GR, cornerradius=4),
+    name="EBITDA", marker=dict(color=GR),
     text=[fmt(ebitda*r) for r in ramp], textposition='outside', textfont=dict(family="JetBrains Mono",size=11,color=GR)))
 fig.update_layout(**PL, height=340, yaxis=dict(showgrid=True,gridcolor=BD,tickformat="$,.0f"),
     xaxis=dict(showgrid=False), barmode='group', bargap=0.3, bargroupgap=0.1,
@@ -349,7 +347,7 @@ fig.update_layout(**PL, height=340, yaxis=dict(showgrid=True,gridcolor=BD,tickfo
 st.plotly_chart(fig, use_container_width=True)
 
 # P&L Table
-st.markdown("#### Detailed P&L — Steady State")
+st.markdown("#### Detailed P&L (Steady State)")
 items = [
     ("Revenue",rev,True,None), ("Raw Materials",-raw_total,False,None), ("Energy Costs",-energy,False,None),
     ("Labor & Other",-labor,False,None), ("Gross Profit",gp,True,"g"), ("SG&A (8%)",-sga,False,None),
@@ -392,7 +390,7 @@ sec("07","Investment Verdict","Should This Business Exist?","verdict")
 
 st.markdown(f"""<div class="verdict-box">
 <h2 style="font-size:26px;line-height:1.3;margin:0;position:relative;">
-Yes — as a <span style="color:{OR};border-bottom:3px solid {OR};padding-bottom:2px;">PE / Infrastructure</span> investment.<br>
+Yes, as a <span style="color:{OR};border-bottom:3px solid {OR};padding-bottom:2px;">PE / Infrastructure</span> investment.<br>
 <span style="color:{RD};">Not as a venture bet.</span>
 </h2>
 </div>""", unsafe_allow_html=True)
@@ -400,8 +398,8 @@ Yes — as a <span style="color:{OR};border-bottom:3px solid {OR};padding-bottom
 c1,c2 = st.columns(2)
 with c1:
     st.markdown("#### Bull Case")
-    for b in ["Regulatory tailwinds (EPBD + IRA) create 5–10 year demand window",
-              "25–35% gross margins with stable construction demand floor",
+    for b in ["Regulatory tailwinds (EPBD + IRA) create 5 to 10 year demand window",
+              "25 to 35% gross margins with stable construction demand floor",
               "US tariffs provide natural moat; domestic supply gap exists",
               "~3-year payback at base case; strong cash generation at scale",
               "Low-E adoption (45% of new construction) drives premiumization"]:
@@ -409,19 +407,19 @@ with c1:
 with c2:
     st.markdown("#### Bear Case")
     for b in ["$75M+ capex is PE-scale (View/Halio burned $3B and failed)",
-              "10–15% net margins: healthy for PE, insufficient for 10x VC returns",
+              "10 to 15% net margins, healthy for PE but insufficient for 10x VC returns",
               "Soda ash volatility (+55.6% in 2025) compresses margins unpredictably",
               "Incumbents investing $1B+ to expand coated glass capacity",
-              "Without coating IP, new entrant competes on price alone — structurally weak"]:
+              "Without coating IP, a new entrant competes on price alone. Structurally weak"]:
         st.markdown(f'<div class="bear-item">{b}</div>', unsafe_allow_html=True)
 
-prose("""The ideal buyer is a <b>mid-market PE fund with an industrial or building materials focus</b> — one with portfolio companies providing distribution into US construction. The wrong buyer is a venture fund expecting software-like returns from capital-intensive manufacturing.""")
+prose("""The ideal buyer is a <b>mid-market PE fund</b> with an industrial or building materials focus, ideally one with portfolio companies providing distribution into US construction. The wrong buyer is a venture fund expecting software-like returns from capital-intensive manufacturing.""")
 
-prose("""<b>For Animal Capital specifically:</b> monitor this space for technology-enabled disruption — AI furnace optimization, novel coatings, ultra-thin glass for electronics — where smaller capital deployment could achieve venture-scale returns. The commodity manufacturing layer itself belongs in a PE portfolio.""")
+prose("""<b>For Animal Capital:</b> the opportunity lies in monitoring this space for technology-enabled disruption. AI furnace optimization, novel coating chemistries, ultra-thin glass for electronics. These are areas where smaller capital deployment could achieve venture-scale returns. The commodity manufacturing layer itself belongs in a PE portfolio.""")
 
 # --- FOOTER ---
 st.markdown(f"""<div class="footer">
-Prepared by Vincenzo Salerno — MSc Quantitative Finance, Bocconi University — March 2026<br>
+Prepared by Vincenzo Salerno | Msc&Bsc Quantitative Finance, Economics and Statistics at Bocconi University | March 2026<br>
 Sources: Grand View Research, MarketsandMarkets, Mordor Intelligence, IMARC, Global Market Insights, Glass International, ChemAnalyst, PitchBook
 </div>""", unsafe_allow_html=True)
 
