@@ -55,7 +55,7 @@ div[data-testid="stMetricValue"],div[data-testid="stMetricLabel"],div[data-testi
 .m-val{{font-family:'JetBrains Mono';font-size:28px;font-weight:800;color:{TX};line-height:1.1;}}
 .m-sub{{font-family:'JetBrains Mono';font-size:11px;color:{DIM};margin-top:4px;}}
 .sec{{display:flex;align-items:flex-start;gap:20px;margin-bottom:32px;}}
-.sec-num{{font-family:'JetBrains Mono';font-size:64px;font-weight:900;color:rgba(232,82,122,0.12);line-height:1;flex-shrink:0;margin-top:-8px;}}
+.sec-num{{font-family:'JetBrains Mono';font-size:64px;font-weight:900;color:rgba(232,82,122,0.7);line-height:1;flex-shrink:0;margin-top:-8px;}}
 .sec-content{{flex:1;}}
 .sec-tag{{font-family:'JetBrains Mono';font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:{PK};margin-bottom:6px;}}
 .card{{background:{CARD};border:1px solid {BD};border-radius:16px;padding:28px;margin-bottom:16px;}}
@@ -220,9 +220,9 @@ with col1:
     fig=go.Figure()
     fig.add_trace(go.Bar(x=[78.6,12,5,4.4],y=["Building &<br>Construction","Automotive","Solar Glass","Electronics<br>& Other"],
         orientation='h',marker=dict(color=[PK,PK,GR,OR]),
-        text=["78.6%","12%","5%","4.4%"],textposition='auto',textfont=dict(family="JetBrains Mono",size=13,color="white")))
+        text=["78.6%","12%","5%","4.4%"],textposition='auto',textfont=dict(family="JetBrains Mono",size=13,color=CARD)))
     fig.update_layout(**PL,height=220,xaxis=dict(showgrid=False,showticklabels=False,range=[0,100]),
-        yaxis=dict(showgrid=False,autorange="reversed"),bargap=0.35)
+        yaxis=dict(showgrid=False,autorange="reversed",tickfont=dict(color=TX)),bargap=0.35)
     st.plotly_chart(fig,use_container_width=True)
 
 with col2:
@@ -247,9 +247,9 @@ with col1:
     fig=go.Figure()
     fig.add_trace(go.Bar(x=[60,20,15,5],y=["Soda Ash<br>(60% batch)","Silica Sand","Energy<br>(nat. gas)","Other"],
         orientation='h',marker=dict(color=[RD,OR,OR,BL]),
-        text=["60%","20%","15%","5%"],textposition='auto',textfont=dict(family="JetBrains Mono",size=13,color="white")))
+        text=["60%","20%","15%","5%"],textposition='auto',textfont=dict(family="JetBrains Mono",size=13,color=CARD)))
     fig.update_layout(**PL,height=200,xaxis=dict(showgrid=False,showticklabels=False,range=[0,75]),
-        yaxis=dict(showgrid=False,autorange="reversed"),bargap=0.35)
+        yaxis=dict(showgrid=False,autorange="reversed",tickfont=dict(color=TX)),bargap=0.35)
     st.plotly_chart(fig,use_container_width=True)
 
 with col2:
@@ -259,7 +259,7 @@ with col2:
         mode='lines+markers+text',text=["$180","$257","$280"],textposition='top center',
         textfont=dict(family="JetBrains Mono",size=13,color=TX),
         line=dict(color=RD,width=3),marker=dict(size=10,color=RD)))
-    fig.update_layout(**PL,height=200,yaxis=dict(showgrid=True,gridcolor=BD,range=[140,320]),xaxis=dict(showgrid=False))
+    fig.update_layout(**PL,height=200,yaxis=dict(showgrid=True,gridcolor=BD,range=[140,320],tickfont=dict(color=TX)),xaxis=dict(showgrid=False,tickfont=dict(color=TX)))
     st.plotly_chart(fig,use_container_width=True)
     st.markdown(f'<p style="text-align:center;color:{RD};font-weight:700;font-size:13px;">+55.6% increase Jan to Sep 2025</p>',unsafe_allow_html=True)
 
@@ -281,8 +281,8 @@ fig.add_trace(go.Bar(x=["Saint-Gobain","AGC Inc.","Guardian<br>(Koch)","Şişeca
     y=[12,6,5,3,revenue/1e9],marker=dict(color=[PK,BL,OR,GR,RD]),
     text=["$12B","$6B","$5B","$3B",fmt(revenue)],textposition='outside',
     textfont=dict(family="JetBrains Mono",size=12,color=TX)))
-fig.update_layout(**PL,height=300,yaxis=dict(showgrid=True,gridcolor=BD,title="Glass Revenue ($B)"),
-    xaxis=dict(showgrid=False),bargap=0.4)
+fig.update_layout(**PL,height=300,yaxis=dict(showgrid=True,gridcolor=BD,title="Glass Revenue ($B)",tickfont=dict(color=TX),titlefont=dict(color=TX)),
+    xaxis=dict(showgrid=False,tickfont=dict(color=TX)),bargap=0.4)
 st.plotly_chart(fig,use_container_width=True)
 
 comps=[
@@ -333,7 +333,7 @@ cost_colors = [RD, OR, "#E8943A", BL, DIM]
 cumulative = 0
 for val, label, color in zip(cost_components, cost_labels, cost_colors):
     fig.add_trace(go.Bar(x=[label], y=[val], name=label, marker=dict(color=color),
-        text=[f"${val:.0f}"], textposition='inside', textfont=dict(family="JetBrains Mono",size=12,color="white")))
+        text=[f"${val:.0f}"], textposition='inside', textfont=dict(family="JetBrains Mono",size=12,color=CARD)))
 
 fig.add_hline(y=asp, line_dash="dash", line_color=GR, line_width=2,
     annotation_text=f"ASP: ${asp}/t", annotation_position="top right",
