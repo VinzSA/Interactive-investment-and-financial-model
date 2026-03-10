@@ -1,0 +1,17 @@
+name: Keep Streamlit Alive
+on:
+  schedule:
+    - cron: '0 */10 * * *'
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Empty commit
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git commit --allow-empty -m "keep alive"
+          git push
